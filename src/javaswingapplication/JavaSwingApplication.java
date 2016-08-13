@@ -1,8 +1,11 @@
 
 package javaswingapplication;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -27,6 +30,16 @@ public class JavaSwingApplication extends JFrame {
     
     public JavaSwingApplication(String text){
         this.setTitle(text);
+    }
+    
+    public ArrayList getData(){
+        
+        ArrayList a = new ArrayList();
+        
+        a.add(text1.getText());
+        a.add(text2.getText());
+        return a;
+        
     }
     
     private void Initialize(){
@@ -75,7 +88,9 @@ public class JavaSwingApplication extends JFrame {
              int a =Integer.parseInt(text1.getText());
              int b=Integer.parseInt(text2.getText());
              
-             text3.setText((JTextField)a+b);
+           String sum =  Integer.toString(a+b);
+           
+           text3.setText(sum);
             
              
              
@@ -86,6 +101,24 @@ public class JavaSwingApplication extends JFrame {
         sub = new JButton("Sub");
         sub.setBounds(400,200,150,30);
         this.add(this.sub);
+        
+        
+        sub.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               
+               ArrayList data =  getData();
+             int a = Integer.parseInt( data.get(0).toString());
+             int b = Integer.parseInt(data.get(1).toString());
+             
+             String sub = Integer.toString(a-b);
+             text3.setText(sub);
+             text3.setFont(new Font("Serif",Font.BOLD,22));
+             text3.setForeground(Color.red);
+//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        
         
         
         
